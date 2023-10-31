@@ -62,6 +62,7 @@ public class Residencia extends AbstractEntity{
     }
     @Data
     public static class DtoResponse extends RepresentationModel<DtoResponse>{
+        Long id;
         String endereco;
         double cargaInstalada;
         String padraoEntrada;

@@ -63,6 +63,7 @@ public class Manutencao extends AbstractEntity{
     }
     @Data
     public static class DtoResponse extends RepresentationModel<Residencia.DtoResponse> {
+        Long id;
         Date dataCadastro;
         Date dataFinalizacao;
         String descricao;
