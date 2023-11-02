@@ -23,9 +23,20 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 public class Residencia extends AbstractEntity{
 
     private String endereco;
+    //a soma das potências nominais de todos os equipamentos elétricos
     private double cargaInstalada;
+    //dimensão da bitola do fio (mm²)
     private String padraoEntrada;
-    private String quadroDistribuicao;
+    // unipolares, bipolares e tripolares
+    private String tipoDisjuntor;
+    // 110V ou 220V
+    private int voltagemPadrao;
+    //  Plástico Rígido Roscável, Plástico Rígido Soldável, Plástico Flexível, Aço Carbono
+    private String tipoEletroduto;
+    // Dispositivo Diferencial Residual
+    private boolean possuiDR;
+    // Dispositivo de Proteção contra Surtos
+    private boolean possuiDPS;
 
     @ManyToOne
     @JoinColumn(name="fk_usuario")
@@ -40,7 +51,11 @@ public class Residencia extends AbstractEntity{
             this.endereco = residencia.endereco;
             this.cargaInstalada = residencia.cargaInstalada;
             this.padraoEntrada = residencia.padraoEntrada;
-            this.quadroDistribuicao = residencia.quadroDistribuicao;
+            this.tipoDisjuntor = residencia.tipoDisjuntor;
+            this.voltagemPadrao = residencia.voltagemPadrao;
+            this.tipoEletroduto = residencia.tipoEletroduto;
+            this.possuiDR = residencia.possuiDR;
+            this.possuiDPS = residencia.possuiDPS;
         }
     }
 
@@ -52,8 +67,16 @@ public class Residencia extends AbstractEntity{
         double cargaInstalada;
         @NotBlank(message = "Padrao de entrada em branco")
         String padraoEntrada;
-        @NotBlank(message = "Quadro de distribuição em branco")
-        String quadroDistribuicao;
+        @NotBlank(message = "Tipo de disjuntor em branco")
+        String tipoDisjuntor;
+        @NotBlank(message = "Voltagem padrão em branco")
+        int voltagemPadrao;
+        @NotBlank(message = "Tipo do eletroduto em branco")
+        String tipoEletroduto;
+        @NotBlank(message = "Possuir DR em branco")
+        boolean possuiDR;
+        @NotBlank(message = "Possuir DPS em branco")
+        boolean possuiDPS;
         Usuario usuario;
         List<Manutencao> manutencoes;
         public static Residencia convertToEntity(DtoRequest dto, ModelMapper mapper) {
@@ -62,10 +85,15 @@ public class Residencia extends AbstractEntity{
     }
     @Data
     public static class DtoResponse extends RepresentationModel<DtoResponse>{
+        Long id;
         String endereco;
         double cargaInstalada;
         String padraoEntrada;
-        String quadroDistribuicao;
+        String tipoDisjuntor;
+        int voltagemPadrao;
+        String tipoEletroduto;
+        boolean possuiDR;
+        boolean possuiDPS;
         @JsonIgnoreProperties({"login","password","email","tipo","isAdmin","residencias","manutencoes",
                 "enabled","authorities","credentialsNonExpired","accountNonExpired","accountNonLocked",
                 "deletedAt","createdAt","updatedAt"})

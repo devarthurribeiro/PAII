@@ -112,6 +112,7 @@ public class Usuario extends AbstractEntity implements UserDetails {
     @Data
     @EqualsAndHashCode(callSuper = true)
     public static class DtoResponse extends RepresentationModel<DtoResponse> {
+        Long id;
         String username;
         String login;
         String password;
