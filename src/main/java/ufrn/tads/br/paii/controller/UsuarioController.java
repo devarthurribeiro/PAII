@@ -10,6 +10,7 @@ import ufrn.tads.br.paii.domain.Usuario;
 import ufrn.tads.br.paii.service.UsuarioService;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/usuarios")
 public class UsuarioController {
     UsuarioService service;
