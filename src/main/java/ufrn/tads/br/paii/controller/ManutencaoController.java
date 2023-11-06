@@ -12,6 +12,7 @@ import ufrn.tads.br.paii.service.ManutencaoService;
 
 @RestController
 @RequestMapping("/manutencoes")
+@CrossOrigin(origins = "*")
 public class ManutencaoController {
     ManutencaoService service;
     ModelMapper mapper;
